@@ -7,7 +7,6 @@ class projectile extends entity
         if(debug){this.vel=100 }
         this.direcao = Math.random()*(Math.PI*2)
         this.time = 0;
-    
     }
 
     update()
