@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma</title>
+    <style>
+        * {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script>debug = parseInt(prompt("Debug:[0/1]"))</script>
+    <script>num_proj = parseInt(prompt("Número Projéteis"))</script>
+    <script>l_b = parseInt(prompt("Lados da Borda:"))</script>
+    <script src="entity.js"></script>
+    <script src="player.js"></script>
+    <script src="projectile.js"></script>
+    <script src="plat.js"></script>
+    <script src="enemy.js"></script>
+</head>
+<body>
+   <canvas id="game"></canvas>
+   <script>
+    var canvas = document.getElementById("game");
+    canvas.height = innerHeight;
+    canvas.width = innerWidth;
+
+    var ctx = canvas.getContext("2d");
+
+    var grav = .65;
+    //var num_proj = 150;
+    var projects = [];
+    for(let i = 0; i < num_proj; i ++)
+   {
+    projects.push(new projectile("N", 5, 400, 400, 12, 12, "black"));
+   }
+    var hero;
+    //var plat_1 = new plat("N", 4, canvas.width/2, canvas.height-20, canvas.width*1.5, 60, "black")
+    var plats = []
+    plats.push(new plat("N", l_b, 400,400,800,800, "black"))
+    //plats.push(new plat("N", 4, 200,400,200,600, "red"))
+    //plats.push(new plat("N", 3, 600,500,250,250, "yellow"))
+    //plats.push(new plat("N", 30,400,100,100,100, "blue"))
+
+    var FPS = 30;
+    var intens = 1
+
+    if(debug){FPS=1;intens=0.19}
+    var timer = setInterval(loop, 1000/FPS);
+
+    function loop()
+    {
+        ctx.fillStyle = `rgba(255, 255, 255, ${intens})`;
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+
+        for(let i = 0; i < projects.length; i++)
+        {
+            projects[i].update()
+        }   
+        
+        for(let i = 0; i < plats.length; i++)
+        {
+            plats[i].draw()
+        }
+
+
+    }
+
+   </script>
+</body>
+</html>
