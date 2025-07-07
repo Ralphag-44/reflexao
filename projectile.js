@@ -84,28 +84,25 @@ class projectile extends entity
             ctx.save();
             ctx.lineWidth = 3;
 
-            // ponto de colisão
             let cx = col[1].x;
             let cy = col[1].y;
-
-            // tamanho dos vetores para visualização
             let size = 50;
             
-            // 1. vetor original (azul)
+            //  vetor original
             ctx.strokeStyle = "blue";
             ctx.beginPath();
             ctx.moveTo(cx - vetor_velx * size, cy - vetor_vely * size);
             ctx.lineTo(cx + vetor_velx * size, cy + vetor_vely * size);
             ctx.stroke();
 
-            // 2. vetor normal (verde)
+            // normal do seg-reta
             ctx.strokeStyle = "green";
             ctx.beginPath();
             ctx.moveTo(cx - normal_x * size, cy - normal_y * size);
             ctx.lineTo(cx + normal_x * size, cy + normal_y * size);
             ctx.stroke();
 
-            // 3. vetor refletido (vermelho)
+            // vetor reletido
             ctx.strokeStyle = "red";
             ctx.beginPath();
             ctx.moveTo(cx - result_x * size, cy - result_y * size);
@@ -118,9 +115,7 @@ class projectile extends entity
             
             }
             if(n+1 == full_list.length && cc==0){this.points = super.copy(this.hitbox)  }
-            //if(col[0]){console.log(Math.atan2(col[1].y,col[1].x)* (180/Math.PI))}
             
-          //  if(col[0]){this.direcao = Math.random()*(Math.PI*2)}
                       
             }
            
