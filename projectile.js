@@ -56,28 +56,28 @@ class projectile extends entity
 
             let ponto_a = col[2][0]
             let ponto_b = col[2][1];
-            // 1) velocidade em vetor
+               
             let vetor_velx = Math.cos(this.direcao);
             let vetor_vely = Math.sin(this.direcao);
-            // 2) tangente → normal arbitrária
+
             let tan_x = ponto_b.x - ponto_a.x;
             let tan_y = ponto_b.y - ponto_a.y;
+               
             let normal_x = -tan_y;
             let normal_y = tan_x;
             let mag = Math.hypot(normal_x, normal_y);
             normal_x /= mag;
             normal_y /= mag;
-            // 3) garanta que a normal aponte contra a velocidade (lado "fora")
+               
+            // correcao, inclinacao do seg-reta colidido
             let prod_e = vetor_velx*normal_x + vetor_vely*normal_y;
             if (prod_e > 0) { normal_x = -normal_x; normal_y = -normal_y; prod_e = -prod_e; }
-            // 4) reflexão vetorial
+               
             let result_x = vetor_velx - 2*prod_e*normal_x;
             let result_y = vetor_vely - 2*prod_e*normal_y;
-            // 5) novo ângulo
+               
             this.direcao = Math.atan2(result_y, result_x);
-            // 6) normalize
-            //this.direcao %= 2*Math.PI;
-            //if (this.direcao < 0) this.direcao += 2*Math.PI;
+
 
             if(debug)
             {
